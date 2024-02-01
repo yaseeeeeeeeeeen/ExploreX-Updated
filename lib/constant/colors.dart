@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Color mainThemeClr = Color.fromARGB(255, 129, 101, 22);
+Color mainThemeClr = Color.fromARGB(255, 34, 76, 0);
 
 Color white = Colors.white;
 

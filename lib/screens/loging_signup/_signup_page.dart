@@ -6,12 +6,19 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart';
+import 'package:trip_planner/constant/colors.dart';
+import 'package:trip_planner/constant/fonts_styles.dart';
+import 'package:trip_planner/constant/image_urls.dart';
+import 'package:trip_planner/constant/validations.dart';
 import 'package:trip_planner/database/db_helper.dart';
 import 'package:trip_planner/screens/loging_signup/_login_page.dart';
 import 'package:trip_planner/screens/loging_signup/transition.dart';
 
 import 'package:trip_planner/screens/pages/botton_nav.dart';
+import 'package:trip_planner/widgets/buttons_and_textfields/button_styles.dart';
+import 'package:trip_planner/widgets/buttons_and_textfields/text_filed.dart';
 import 'package:trip_planner/widgets/image_pick.dart';
+import 'package:trip_planner/widgets/snackbar/snack_bar.dart';
 
 class SignUPage extends StatefulWidget {
   SignUPage({super.key});
@@ -31,195 +38,103 @@ class _SignUPageState extends State<SignUPage> {
   File? image;
   @override
   Widget build(BuildContext context) {
+    final media = MediaQuery.sizeOf(context);
     return Scaffold(
-        body: SingleChildScrollView(
-            child: Stack(alignment: Alignment.center, children: [
+        body: Stack(alignment: Alignment.center, children: [
       Container(
-          height: MediaQuery.sizeOf(context).height,
+          height: media.height,
           decoration: BoxDecoration(
-              color: Colors.black,
               image: DecorationImage(
-                  image: AssetImage('assets/images/signUpIMG.jpg'),
+                  image: AssetImage(ImagePaths.signUpBg),
                   opacity: 0.7,
                   fit: BoxFit.cover))),
       Padding(
-          padding: const EdgeInsets.only(left: 20.0, right: 20),
+          padding: const EdgeInsets.all(20),
           child: Form(
               key: _formKey,
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(height: 40),
-                    GestureDetector(
-                        onTap: () async {
-                          imagefile = await ImagePickService().pickCropImage(
-                              cropAspectRatio:
-                                  CropAspectRatio(ratioX: 1, ratioY: 1),
-                              imageSource: ImageSource.gallery);
-                          if (imagefile != null) {
-                            imageCheck = true;
-                          }
-                          final Imagepath = File(imagefile!.path);
-                          setState(() {
-                            this.image = Imagepath;
-                          });
-                        },
-                        child: !imageCheck
-                            ? CircleAvatar(
-                                backgroundColor:
-                                    Color.fromARGB(214, 190, 190, 190),
-                                radius: 65,
-                                child: Lottie.asset(
-                                    'assets/animation/profileLottie.json'))
-                            : CircleAvatar(
-                                radius: 65,
-                                backgroundImage:
-                                    FileImage(File(imagefile!.path)))),
-                    SizedBox(height: 40),
-                    TextFormField(
-                        controller: _nameController,
-                        validator: (value) {
-                          final nameRegex = RegExp(r'^[a-zA-Z -]{1,}$');
-                          if (!nameRegex.hasMatch(value!)) {
-                            return 'Please enter a valid name';
-                          }
-                          return null;
-                        },
-                        decoration: InputDecoration(
-                            labelStyle: GoogleFonts.tenorSans(
-                                fontSize: 19,
-                                color: Color.fromARGB(255, 0, 0, 0),
-                                fontWeight: FontWeight.w500),
-                            suffixIcon: Icon(Icons.person),
-                            suffixIconColor: Colors.black87,
-                            filled: true,
-                            fillColor: Color.fromARGB(57, 255, 255, 255),
-                            border: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.circular(15)),
-                            hintText: " Name",
-                            hintStyle: GoogleFonts.tenorSans(
-                                fontSize: 19,
-                                color: Color.fromARGB(255, 0, 0, 0),
-                                fontWeight: FontWeight.w500))),
-                    SizedBox(height: 20),
-                    TextFormField(
-                        controller: _PhoneController,
-                        validator: (value) {
-                          final phoneRegex = RegExp(
-                            r'^\+?[0-9]{10}$',
-                          );
-                          if (!phoneRegex.hasMatch(value!)) {
-                            return 'Please enter a valid phone number';
-                          }
-                          return null;
-                        },
-                        keyboardType: TextInputType.phone,
-                        decoration: InputDecoration(
-                            suffixIcon: Icon(Icons.phone),
-                            suffixIconColor: Colors.black87,
-                            filled: true,
-                            fillColor: Color.fromARGB(57, 255, 255, 255),
-                            border: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.circular(15)),
-                            hintText: "  Phone",
-                            hintStyle: GoogleFonts.tenorSans(
-                                fontSize: 19,
-                                color: Color.fromARGB(255, 0, 0, 0),
-                                fontWeight: FontWeight.w500))),
-                    SizedBox(height: 20),
-                    TextFormField(
+              child: SingleChildScrollView(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+                          onTap: () async {
+                            imagefile = await ImagePickService().pickCropImage(
+                                cropAspectRatio:
+                                    CropAspectRatio(ratioX: 1, ratioY: 1),
+                                imageSource: ImageSource.gallery);
+                            if (imagefile != null) {
+                              imageCheck = true;
+                            }
+                            final Imagepath = File(imagefile!.path);
+                            setState(() {
+                              this.image = Imagepath;
+                            });
+                          },
+                          child: !imageCheck
+                              ? CircleAvatar(
+                                  backgroundColor:
+                                      Color.fromARGB(214, 190, 190, 190),
+                                  radius: 65,
+                                  child: Lottie.asset(LottiePath.cameraLottie,
+                                      repeat: false))
+                              : CircleAvatar(
+                                  radius: 65,
+                                  backgroundImage:
+                                      FileImage(File(imagefile!.path)))),
+                      SizedBox(height: 40),
+                      CustomTextFiledOne(
+                          suffixIcon: Icons.person,
+                          controller: _nameController,
+                          hintText: "Username",
+                          validation: (value) =>
+                              Validations().nameValidation(value)),
+                      SizedBox(height: 20),
+                      CustomTextFiledOne(
+                          suffixIcon: Icons.phone,
+                          controller: _PhoneController,
+                          hintText: "Phone",
+                          validation: (value) =>
+                              Validations().phoneNumberValidate(value),
+                          keyboardType: TextInputType.number),
+                      SizedBox(height: 20),
+                      CustomTextFiledOne(
+                        suffixIcon: Icons.email,
                         controller: _MailController,
-                        validator: (value) {
-                          final emailRegex = RegExp(
-                            r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
-                          );
-                          if (!emailRegex.hasMatch(value!)) {
-                            return 'Please enter a valid email address';
-                          }
-                          return null;
-                        },
-                        decoration: InputDecoration(
-                            suffixIcon: Icon(Icons.mail),
-                            suffixIconColor: Colors.black87,
-                            filled: true,
-                            fillColor: Color.fromARGB(57, 255, 255, 255),
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide.none,
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            hintText: "  Mail",
-                            hintStyle: GoogleFonts.tenorSans(
-                                fontSize: 19,
-                                color: Color.fromARGB(255, 0, 0, 0),
-                                fontWeight: FontWeight.w500))),
-                    SizedBox(height: 20),
-                    TextFormField(
-                        controller: _passwordController,
-                        validator: (value) {
-                          // Define the regex pattern for password validation
-                          final passwordRegex = RegExp(r'^.{8,}$');
-                          if (!passwordRegex.hasMatch(value!)) {
-                            return 'Password must be 8 characters long';
-                          }
-                          return null;
-                        },
-                        obscureText: true,
-                        decoration: InputDecoration(
-                            suffixIcon: Icon(Icons.lock_sharp),
-                            suffixIconColor: Colors.black87,
-                            filled: true,
-                            fillColor: Color.fromARGB(57, 255, 255, 255),
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide.none,
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            hintText: "  Password",
-                            hintStyle: GoogleFonts.tenorSans(
-                                fontSize: 19,
-                                color: Color.fromARGB(255, 0, 0, 0),
-                                fontWeight: FontWeight.w500))),
-                    SizedBox(height: 40),
-                    ElevatedButton(
-                        style: ButtonStyle(
-                            minimumSize:
-                                MaterialStateProperty.all(Size(150, 40)),
-                            shape: MaterialStateProperty.all(
-                                RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(12))),
-                            backgroundColor: MaterialStatePropertyAll(
-                                Color.fromRGBO(58, 115, 2, 1))),
-                        onPressed: () {
-                          _submitForm();
-                        },
-                        child: Text('SignUp',
-                            style: GoogleFonts.tenorSans(
-                                fontSize: 21,
-                                color:
-                                    const Color.fromARGB(211, 255, 255, 255)))),
-                    SizedBox(height: 150),
-                    GestureDetector(
-                        onTap: () {
-                          imageCheck = false;
-                          Navigator.of(context).pushAndRemoveUntil(
-                              MaterialPageRoute(builder: (context) {
-                            return LoginPage();
-                          }), (route) => false);
-                        },
-                        child: RichText(
-                            text: TextSpan(
-                                text: 'You have any account?   ',
-                                style: GoogleFonts.tenorSans(fontSize: 17),
-                                children: [
-                              TextSpan(
-                                  text: 'LogIn',
-                                  style: GoogleFonts.tenorSans(
-                                      color: Color.fromRGBO(120, 197, 43, 1),
-                                      fontWeight: FontWeight.w700))
-                            ])))
-                  ])))
-    ])));
+                        hintText: "email",
+                        validation: (p0) => Validations().emailValidation(p0),
+                      ),
+                      SizedBox(height: 20),
+                      CustomTextFiledOne(
+                          suffixIcon: Icons.lock,
+                          controller: _passwordController,
+                          hintText: "Password",
+                          validation: (value) =>
+                              Validations().passwordValidations(value)),
+                      SizedBox(height: 40),
+                      CustomButtonOne(
+                          onPressed: () {
+                            _submitForm();
+                          },
+                          text: "SignUp"),
+                      SizedBox(height: media.height * 0.05),
+                      GestureDetector(
+                          onTap: () {
+                            imageCheck = false;
+                            Navigator.of(context).pushAndRemoveUntil(
+                                MaterialPageRoute(builder: (context) {
+                              return LoginPage();
+                            }), (route) => false);
+                          },
+                          child: RichText(
+                              text: TextSpan(
+                                  text: 'You have any account?   ',
+                                  style: GoogleFonts.outfit(fontSize: 17),
+                                  children: [
+                                TextSpan(text: 'LogIn', style: font17Mcl)
+                              ])))
+                    ]),
+              )))
+    ]));
   }
 
 //validation checking
@@ -227,15 +142,8 @@ class _SignUPageState extends State<SignUPage> {
     if (_formKey.currentState!.validate() && imageCheck == true) {
       addDb();
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          backgroundColor: Color.fromRGBO(59, 115, 2, 1),
-          behavior: SnackBarBehavior.floating,
-          margin: EdgeInsets.all(10),
-          duration: Duration(milliseconds: 700),
-          content: Text("COMPLETE  ALL DETAILS"),
-        ),
-      );
+      ScaffoldMessenger.of(context)
+          .showSnackBar(customSnackBar(context, "COMPLETE  ALL DETAILS", true));
     }
   }
 

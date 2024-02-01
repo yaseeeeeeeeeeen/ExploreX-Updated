@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:trip_planner/constant/colors.dart';
 import 'package:trip_planner/constant/fonts_styles.dart';
+import 'package:trip_planner/constant/validations.dart';
 
 import 'package:trip_planner/database/db_helper.dart';
 import 'package:trip_planner/screens/loging_signup/_signup_page.dart';
 import 'package:trip_planner/screens/loging_signup/transition.dart';
 import 'package:trip_planner/screens/pages/botton_nav.dart';
+import 'package:trip_planner/widgets/buttons_and_textfields/button_styles.dart';
+import 'package:trip_planner/widgets/buttons_and_textfields/text_filed.dart';
+import 'package:trip_planner/widgets/snackbar/snack_bar.dart';
 
 bool logincheck = false;
 
@@ -42,7 +46,7 @@ class LoginPage extends StatelessWidget {
                       colors: [
                         transperent,
                         transperent,
-                        black,
+                        white.withOpacity(0.7),
                       ],
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
@@ -50,83 +54,49 @@ class LoginPage extends StatelessWidget {
               child: Container(
                   child: Form(
                       key: _formkey,
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Container(
-                                margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                                child: TextFormField(
-                                    style: TextStyle(color: Colors.white),
-                                    controller: _usernameController,
-                                    decoration: InputDecoration(
-                                        suffixIcon: Icon(Icons.person),
-                                        suffixIconColor: black,
-                                        filled: true,
-                                        fillColor: Color(0x5AFFFFFF),
-                                        border: OutlineInputBorder(
-                                          borderSide: BorderSide.none,
-                                          borderRadius:
-                                              BorderRadius.circular(15),
-                                        ),
-                                        hintText: "Enter your username",
-                                        hintStyle: GoogleFonts.tenorSans(
-                                            color: Color.fromARGB(
-                                                150, 235, 235, 235),
-                                            fontWeight: FontWeight.w500)))),
-                            SizedBox(height: 20),
-                            Container(
-                                margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                                child: TextFormField(
-                                    style: TextStyle(color: Colors.white),
-                                    controller: _passwordController,
-                                    obscureText: true,
-                                    decoration: InputDecoration(
-                                        suffixIcon: Icon(Icons.security),
-                                        suffixIconColor: Colors.black87,
-                                        filled: true,
-                                        fillColor: Color(0x5AFFFFFF),
-                                        border: OutlineInputBorder(
-                                            borderSide: BorderSide.none,
-                                            borderRadius:
-                                                BorderRadius.circular(15)),
-                                        hintText: "Enter password here",
-                                        hintStyle: GoogleFonts.tenorSans(
-                                            color: Color.fromARGB(
-                                                150, 235, 235, 235),
-                                            fontWeight: FontWeight.w500)))),
-                            SizedBox(height: 20),
-                            ElevatedButton(
-                                style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all(mainThemeClr),
-                                  minimumSize:
-                                      MaterialStateProperty.all(Size(150, 40)),
-                                  shape: MaterialStateProperty.all(
-                                      RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(12))),
-                                ),
-                                onPressed: () {
-                                  checkLogin(context);
-                                },
-                                child: Text('Login', style: buttonLog)),
-                            SizedBox(height: 60),
-                            GestureDetector(
-                                onTap: () {
-                                  Navigator.of(context).push(
-                                      MaterialPageRoute(builder: (context) {
-                                    return SignUPage();
-                                  }));
-                                },
-                                child: RichText(
-                                    text: TextSpan(
-                                        text: 'Didn’t have any account?   ',
-                                        style: font17,
-                                        children: [
-                                      TextSpan(text: 'SignUp', style: font17Mcl)
-                                    ]))),
-                            SizedBox(height: 50)
-                          ]))))
+                      child: Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              CustomTextFiledOne(
+                                  suffixIcon: Icons.person,
+                                  controller: _usernameController,
+                                  hintText: "Enter your username",
+                                  validation: (value) =>
+                                      Validations().nameValidation(value)),
+                              SizedBox(height: 20),
+                              CustomTextFiledOne(
+                                  suffixIcon: Icons.lock,
+                                  controller: _passwordController,
+                                  hintText: "Password",
+                                  validation: (value) =>
+                                      Validations().passwordValidations(value)),
+                              SizedBox(height: 20),
+                              CustomButtonOne(
+                                  onPressed: () {
+                                    checkLogin(context);
+                                  },
+                                  text: "Login"),
+                              SizedBox(height: 60),
+                              GestureDetector(
+                                  onTap: () {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(builder: (context) {
+                                      return SignUPage();
+                                    }));
+                                  },
+                                  child: RichText(
+                                      text: TextSpan(
+                                          text: 'Didn’t have any account?   ',
+                                          style: font17,
+                                          children: [
+                                        TextSpan(
+                                            text: 'SignUp', style: font17Mcl)
+                                      ]))),
+                              SizedBox(height: 50)
+                            ]),
+                      ))))
         ])));
   }
 
@@ -139,12 +109,8 @@ class LoginPage extends StatelessWidget {
 
     if (result.isEmpty) {
 //SnackBar
-      ScaffoldMessenger.of(ctx).showSnackBar(SnackBar(
-          backgroundColor: Color.fromRGBO(59, 115, 2, 1),
-          behavior: SnackBarBehavior.floating,
-          margin: EdgeInsets.all(10),
-          duration: Duration(milliseconds: 700),
-          content: Text("User OR PASSWORD DOES' NOT MATCH")));
+      ScaffoldMessenger.of(ctx).showSnackBar(
+          customSnackBar(ctx, "USERNAME OR PASSWORD DOES' NOT MATCH", true));
     } else {
       logincheck = true;
       Navigator.of(ctx).pushAndRemoveUntil(

@@ -12,10 +12,14 @@ TextStyle AppbarTitle = GoogleFonts.marcellusSc(
   fontSize: 34,
   fontWeight: FontWeight.w900,
 );
+
+TextStyle normalOutfit = GoogleFonts.outfit(color: Colors.white);
 TextStyle buttonstyl = GoogleFonts.dmSerifDisplay(
     color: white, fontSize: 20, decoration: TextDecoration.none);
 
 TextStyle buttonLog = GoogleFonts.poppins(fontSize: 15, color: white);
 
-TextStyle font17 = GoogleFonts.outfit(fontSize: 17);
+TextStyle font17 = GoogleFonts.outfit(fontSize: 17, color: Colors.black);
 TextStyle font17Mcl = GoogleFonts.outfit(fontSize: 17, color: mainThemeClr);
+
+TextStyle buttonStyle = GoogleFonts.outfit(fontSize: 21, color: Colors.white);
