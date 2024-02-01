@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trip_planner/constant/colors.dart';
 import 'package:trip_planner/database/db_helper.dart';
 import 'package:trip_planner/screens/ontap_screens/upcoming_screen.dart';
 import 'package:trip_planner/screens/trip_adding/add_trip1.dart';
@@ -15,7 +16,6 @@ class UpcomingTripWid extends StatefulWidget {
 class _UpcomingTripWidState extends State<UpcomingTripWid> {
   @override
   Widget build(BuildContext context) {
-    
     return FutureBuilder(
       future: DatabaseHelper.instance.readUpcomingTrips(widget.UserInfo?['id']),
       builder: (context, snapshot) {
@@ -60,8 +60,9 @@ class _UpcomingTripWidState extends State<UpcomingTripWid> {
                   ),
                 ),
                 decoration: BoxDecoration(
+                  border: Border.all(color: borderSide),
                   borderRadius: BorderRadius.circular(10),
-                  color: const Color.fromARGB(110, 158, 158, 158),
+                  color: white,
                 ),
                 padding: EdgeInsets.all(10),
                 width: MediaQuery.sizeOf(context).width,

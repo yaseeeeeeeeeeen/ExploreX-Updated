@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trip_planner/constant/colors.dart';
 
 class ExpensePageCard extends StatelessWidget {
   const ExpensePageCard(
@@ -26,14 +27,15 @@ class ExpensePageCard extends StatelessWidget {
                   children: [
                     Text(Number,
                         style: GoogleFonts.dmSerifDisplay(
-                            fontSize: 50,
-                            color: Colors.white,
+                            fontSize: 45,
+                            color: white,
                             fontWeight: FontWeight.w500)),
                     Text(text,
                         style: GoogleFonts.robotoCondensed(
-                            fontSize: 27,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500))
+                            fontSize: 23,
+                            color: white,
+                            fontWeight: FontWeight.w500)),
+                    SizedBox()
                   ])))
     ]);
   }

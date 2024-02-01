@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:lottie/lottie.dart';
+import 'package:trip_planner/constant/colors.dart';
 import 'package:trip_planner/database/db_helper.dart';
 import 'package:trip_planner/widgets/ongoing_cad.dart';
 
@@ -33,8 +34,9 @@ class _OnGoingWidState extends State<OnGoingWid> {
           if (snapshot.data == null || snapshot.data!.isEmpty) {
             return Container(
               decoration: BoxDecoration(
+                border: Border.all(color: borderSide),
                 borderRadius: BorderRadius.circular(10),
-                color: const Color.fromARGB(110, 158, 158, 158),
+                color: white,
               ),
               child: Stack(
                 children: [

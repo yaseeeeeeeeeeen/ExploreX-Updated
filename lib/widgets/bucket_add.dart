@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:trip_planner/constant/colors.dart';
 import 'package:trip_planner/database/db_helper.dart';
 import 'package:trip_planner/screens/pages/botton_nav.dart';
-import 'package:trip_planner/widgets/continue_btn.dart';
+import 'package:trip_planner/widgets/buttons_and_textfields/continue_btn.dart';
 import 'package:trip_planner/widgets/image_pick.dart';
 import 'package:trip_planner/widgets/textfield.dart';
 
@@ -33,7 +34,7 @@ class _BucketAddState extends State<BucketAdd> {
       child: Scaffold(
         appBar: AppBar(
           elevation: 0,
-          backgroundColor: Colors.white,
+          backgroundColor: scaffoldbg,
           leading: IconButton(
               onPressed: () {
                 imageCheck = false;
@@ -47,7 +48,7 @@ class _BucketAddState extends State<BucketAdd> {
         ),
         body: SingleChildScrollView(
           child: Container(
-            padding: EdgeInsets.only(left: 20, top: 20, right: 20),
+            padding: EdgeInsets.only(left: 20, top: 10, right: 20),
             child: Form(
               key: _formKey4,
               child: Column(
@@ -103,7 +104,8 @@ class _BucketAddState extends State<BucketAdd> {
                               height: 200,
                               width: MediaQuery.sizeOf(context).width,
                               decoration: BoxDecoration(
-                                  color: Colors.grey,
+                                  color: white,
+                                  border: Border.all(color: borderSide),
                                   borderRadius: BorderRadius.circular(10)),
                             )
                           : Container(

@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:trip_planner/constant/colors.dart';
 import 'package:trip_planner/database/db_helper.dart';
 import 'package:trip_planner/screens/trip_adding/add_trip3.dart';
 
-import 'package:trip_planner/widgets/continue_btn.dart';
+import 'package:trip_planner/widgets/buttons_and_textfields/continue_btn.dart';
 import 'package:trip_planner/widgets/image_pick.dart';
 import 'package:trip_planner/widgets/textfield.dart';
 
@@ -105,7 +106,8 @@ class _AddTrip2State extends State<AddTrip2> {
                               height: 200,
                               width: MediaQuery.sizeOf(context).width,
                               decoration: BoxDecoration(
-                                  color: Colors.grey,
+                                  border: Border.all(color: borderSide),
+                                  color: white,
                                   borderRadius: BorderRadius.circular(10)),
                             )
                           : Container(
@@ -129,21 +131,22 @@ class _AddTrip2State extends State<AddTrip2> {
                     physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        childAspectRatio: 1 / .6, crossAxisCount: 3),
+                        childAspectRatio: 1 / .5, crossAxisCount: 3),
                     itemBuilder: (context, index) {
                       return ChoiceChip(
                         shape: ContinuousRectangleBorder(
                             borderRadius: BorderRadius.circular(10)),
                         label: Container(
                             margin: EdgeInsets.only(left: 20, right: 20),
-                            height: 40,
-                            width: 60,
+                            height: 30,
+                            width: 30,
                             child: Text(Transportaions[index],
-                                style: GoogleFonts.dmSerifDisplay(
-                                    fontSize: 20, fontWeight: FontWeight.w600)),
+                                style: GoogleFonts.outfit(
+                                    fontSize: 12, fontWeight: FontWeight.w600)),
                             alignment: Alignment.center),
                         selectedColor: Color.fromRGBO(58, 115, 2, 0.452),
                         selected: index == isSelected,
+                        showCheckmark: false,
                         onSelected: (NewBoolValue) {
                           setState(() {
                             isSelected = NewBoolValue ? index : -1;

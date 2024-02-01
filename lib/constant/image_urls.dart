@@ -5,6 +5,8 @@ class ImagePaths {
   static String introTwo = 'assets/images/introImg2.jpeg';
   static String introThree = 'assets/images/introImg3.jpeg';
   static String signUpBg = 'assets/images/new-signup.jpeg';
+  static String bctBg = 'assets/images/darkBg.jpeg';
+  static String bctEmpty = 'assets/images/EXPLORE X.jpg';
 }
 
 class LottiePath {

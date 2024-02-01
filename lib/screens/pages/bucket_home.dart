@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trip_planner/constant/colors.dart';
+import 'package:trip_planner/constant/image_urls.dart';
 import 'package:trip_planner/database/db_helper.dart';
 import 'package:trip_planner/widgets/progress_bar.dart';
 import 'package:trip_planner/widgets/titles.dart';
@@ -25,7 +27,7 @@ class _BucketFHomeState extends State<BucketFHome> {
             DatabaseHelper.instance.dreamDestinationGet(widget.UserInfo!['id']),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator(color: Colors.white);
+            return CircularProgressIndicator(color: white);
           } else if (snapshot.hasError) {
             return Text('Erorr ${snapshot.error}');
           } else if (snapshot.data == null || snapshot.data!.isEmpty) {
@@ -38,7 +40,7 @@ class _BucketFHomeState extends State<BucketFHome> {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadiusDirectional.circular(10),
                       image: DecorationImage(
-                          image: AssetImage('assets/images/EXPLORE X.jpg'),
+                          image: AssetImage(ImagePaths.bctEmpty),
                           fit: BoxFit.cover)),
                 ),
               ],
@@ -66,8 +68,7 @@ class _BucketFHomeState extends State<BucketFHome> {
                               colorFilter: ColorFilter.mode(
                                   Colors.black.withOpacity(0.5),
                                   BlendMode.darken),
-                              image:
-                                  AssetImage('assets/images/moneyyy.jpeg')))),
+                              image: AssetImage(ImagePaths.bctBg)))),
                   Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -87,9 +88,9 @@ class _BucketFHomeState extends State<BucketFHome> {
                                     ),
                                     Text(
                                       Destination,
-                                      style: GoogleFonts.tenorSans(
+                                      style: GoogleFonts.outfit(
                                           color: Colors.white,
-                                          fontWeight: FontWeight.w800,
+                                          fontWeight: FontWeight.w300,
                                           fontSize: 30.0),
                                     )
                                   ])),
@@ -98,7 +99,7 @@ class _BucketFHomeState extends State<BucketFHome> {
                               ),
                               Row(children: [
                                 Icon(
-                                  Icons.account_balance,
+                                  Icons.mode_standby_outlined,
                                   size: 30,
                                   color: Colors.white,
                                 ),
@@ -107,7 +108,7 @@ class _BucketFHomeState extends State<BucketFHome> {
                                 ),
                                 Text(
                                   '₹ ${Ammount}',
-                                  style: new TextStyle(
+                                  style: GoogleFonts.outfit(
                                       color: Colors.white,
                                       fontWeight: FontWeight.w500,
                                       fontSize: 30.0),

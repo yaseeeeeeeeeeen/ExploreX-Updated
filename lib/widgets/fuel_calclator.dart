@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trip_planner/constant/colors.dart';
 
 class FuelCalculator extends StatefulWidget {
   const FuelCalculator({super.key});
@@ -30,7 +31,7 @@ class _FuelCalculatorState extends State<FuelCalculator> {
       child: Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
         child: Container(
-          height: 300,
+          height: MediaQuery.sizeOf(context).height / 2.5,
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -45,22 +46,20 @@ class _FuelCalculatorState extends State<FuelCalculator> {
                         style: GoogleFonts.tenorSans(
                             fontSize: 30, fontWeight: FontWeight.w800),
                       ),
-                      Container(
-                        height: 40,
-                        width: 100,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            fuelPriceChecking(
-                                MilageController.text,
-                                DistanceController.text,
-                                FuelPriceController.text);
-                          },
-                          child: Text("Check",
-                              style: GoogleFonts.tenorSans(fontSize: 20)),
-                          style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStatePropertyAll(Colors.black)),
-                        ),
+                      ElevatedButton(
+                        onPressed: () {
+                          fuelPriceChecking(
+                              MilageController.text,
+                              DistanceController.text,
+                              FuelPriceController.text);
+                        },
+                        child: Text("Check",
+                            style:
+                                GoogleFonts.outfit(fontSize: 20, color: white)),
+                        style: ElevatedButton.styleFrom(
+                            shape: LinearBorder(),
+                            fixedSize: Size(120, 50),
+                            backgroundColor: black),
                       )
                     ],
                   ),

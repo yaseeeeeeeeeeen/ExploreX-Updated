@@ -23,3 +23,10 @@ TextStyle font17 = GoogleFonts.outfit(fontSize: 17, color: Colors.black);
 TextStyle font17Mcl = GoogleFonts.outfit(fontSize: 17, color: mainThemeClr);
 
 TextStyle buttonStyle = GoogleFonts.outfit(fontSize: 21, color: Colors.white);
+
+TextStyle homeTitles = GoogleFonts.outfit(
+  fontSize: 20,
+  fontWeight: FontWeight.w400,
+);
+
+TextStyle appbarTitle = GoogleFonts.outfit(fontSize: 25);

@@ -6,7 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart';
-import 'package:trip_planner/constant/colors.dart';
 import 'package:trip_planner/constant/fonts_styles.dart';
 import 'package:trip_planner/constant/image_urls.dart';
 import 'package:trip_planner/constant/validations.dart';

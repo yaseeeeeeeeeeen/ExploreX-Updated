@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trip_planner/constant/fonts_styles.dart';
 
 class TitlesWid extends StatelessWidget {
   const TitlesWid({super.key, required this.Title});
@@ -11,11 +12,7 @@ class TitlesWid extends StatelessWidget {
         SizedBox(
           height: 10,
         ),
-        Text(Title,
-            style: GoogleFonts.tenorSans(
-              fontSize: 20,
-              fontWeight: FontWeight.w900,
-            )),
+        Text(Title, style: homeTitles),
         SizedBox(
           height: 10,
         ),

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:fluttercontactpicker/fluttercontactpicker.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trip_planner/constant/colors.dart';
 import 'package:trip_planner/database/db_helper.dart';
 
 import 'package:trip_planner/screens/pages/botton_nav.dart';
 
-import 'package:trip_planner/widgets/continue_btn.dart';
+import 'package:trip_planner/widgets/buttons_and_textfields/continue_btn.dart';
+import 'package:trip_planner/widgets/snackbar/snack_bar.dart';
 
 // ignore: must_be_immutable
 class AddTrip3 extends StatefulWidget {
@@ -60,7 +62,7 @@ class _AddTrip2State extends State<AddTrip3> {
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                 ),
                 SizedBox(
-                  height: 40,
+                  height: 25,
                 ),
                 Text(
                   'Purpose',
@@ -78,13 +80,19 @@ class _AddTrip2State extends State<AddTrip3> {
                           borderRadius: BorderRadius.circular(10)),
                       label: Container(
                           margin: EdgeInsets.only(left: 20, right: 20),
-                          height: 40,
-                          width: 60,
-                          child: Text(Purpose[index],
-                              style: GoogleFonts.dmSerifDisplay(
-                                  fontSize: 15.5, fontWeight: FontWeight.w600)),
+                          height: 20,
+                          width: 40,
+                          child: Text(
+                            Purpose[index],
+                            // style: GoogleFonts.outfit(
+                            //     fontSize: 15.5, fontWeight: FontWeight.w600)
+                          ),
                           alignment: Alignment.center),
                       selectedColor: Color.fromRGBO(58, 115, 2, 0.452),
+                      showCheckmark: false,
+                      labelPadding: EdgeInsets.zero,
+                      labelStyle: GoogleFonts.outfit(
+                          fontSize: 12, fontWeight: FontWeight.w600),
                       selected: index == isSelected,
                       onSelected: (NewBoolValue) {
                         setState(() {
@@ -110,6 +118,8 @@ class _AddTrip2State extends State<AddTrip3> {
                   children: [
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
                             fixedSize: Size(
                                 MediaQuery.sizeOf(context).width / 2 - 23, 50),
                             backgroundColor: Colors.black),
@@ -130,22 +140,29 @@ class _AddTrip2State extends State<AddTrip3> {
                             print('$CompanionName==$CompanionNumber');
                             print('added ${companionList.length}');
                           } else {
-                            print('List is Empty');
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                customSnackBar(
+                                    context, "Companion List Is Empty", true));
                           }
                         },
                         child: Text(
                           'ADD COMPANION',
-                          style: GoogleFonts.dmSerifDisplay(
-                              fontSize: 16, fontWeight: FontWeight.w600),
+                          style: GoogleFonts.outfit(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                              color: white),
                         )),
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
                             fixedSize: Size(
                                 MediaQuery.sizeOf(context).width / 2 - 25, 50),
                             backgroundColor: Color.fromRGBO(59, 115, 2, 1)),
                         onPressed: () {
                           //bottom sheet -------------------------------------
                           showModalBottomSheet(
+                            shape: LinearBorder(),
                             backgroundColor: Color.fromARGB(255, 207, 207, 207),
                             // const Color.fromRGBO(59, 115, 2, 1),
                             context: context,
@@ -211,8 +228,10 @@ class _AddTrip2State extends State<AddTrip3> {
                         },
                         child: Text(
                           'SHOW COMPANIONS',
-                          style: GoogleFonts.dmSerifDisplay(
-                              fontSize: 15, fontWeight: FontWeight.w500),
+                          style: GoogleFonts.outfit(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                              color: white),
                         ))
                   ],
                 ),
@@ -249,7 +268,7 @@ class _AddTrip2State extends State<AddTrip3> {
                   ),
                 ),
                 SizedBox(
-                  height: 40,
+                  height: 20,
                 ),
                 ContinueButtonWid(
                   ButtonClick: () {

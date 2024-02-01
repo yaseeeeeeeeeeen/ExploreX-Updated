@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:trip_planner/constant/colors.dart';
+import 'package:trip_planner/constant/fonts_styles.dart';
 import 'package:trip_planner/database/db_helper.dart';
 import 'package:trip_planner/screens/pages/completed_card.dart';
 import 'package:trip_planner/screens/pages/home_screen.dart';
@@ -57,37 +59,20 @@ class _BottomNavBarState extends State<BottomNavBar> {
             key: scaffoldKey,
             drawer: DrawerWid(UserDetails: widget.UserDetails),
             appBar: AppBar(
-                leading: Container(),
-                toolbarHeight: 80,
-                elevation: 0,
-                flexibleSpace: Container(
-                    color: Colors.white,
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Container(
-                                  child: GestureDetector(
-                                    onTap: _openDrawer,
-                                    child: CircleAvatar(
-                                        radius: 20,
-                                        backgroundImage:
-                                            FileImage(File(images!))),
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 65,
-                                ),
-                                Text(' ExploreX',
-                                    style: GoogleFonts.marcellusSc(
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.w900,
-                                    ))
-                              ])
-                        ]))),
+              backgroundColor: white,
+              leading: GestureDetector(
+                onTap: _openDrawer,
+                child: Container(
+                  padding: EdgeInsets.only(top: 5, bottom: 5, left: 10),
+                  child: CircleAvatar(
+                      radius: 20, backgroundImage: FileImage(File(images!))),
+                ),
+              ),
+              title: Text(
+                "ExploreX",
+                style: appbarTitle,
+              ),
+            ),
             body: _pages[_selectIndex],
             bottomNavigationBar: Container(
                 color: Colors.black,

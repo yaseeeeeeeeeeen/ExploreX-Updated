@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trip_planner/constant/colors.dart';
 
 // import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:trip_planner/screens/pages/bucket_home.dart';
@@ -10,9 +11,9 @@ import 'package:trip_planner/widgets/titles.dart';
 import 'package:trip_planner/widgets/upcoming_build.dart';
 
 class Home extends StatefulWidget {
-  Home({super.key, this.UserInfo, this.Tripdata});
+  const Home({super.key, this.UserInfo, this.tripdata});
   final Map<String, dynamic>? UserInfo;
-final  Map<String, dynamic>? Tripdata;
+  final Map<String, dynamic>? tripdata;
   @override
   State<Home> createState() => _HomeState();
 }
@@ -36,13 +37,14 @@ class _HomeState extends State<Home> {
                     },
                   ));
                 },
-                backgroundColor: Colors.black,
+                backgroundColor: black,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Icon(
                   Icons.add,
                   size: 30,
+                  color: white,
                 )),
             body: SafeArea(
                 child: SingleChildScrollView(

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trip_planner/constant/image_urls.dart';
 import 'package:trip_planner/database/db_helper.dart';
-import 'package:trip_planner/screens/introduction/intro.dart';
 import 'package:trip_planner/screens/loging_signup/_login_page.dart';
 
 import '../pages/botton_nav.dart';
@@ -21,13 +20,13 @@ class _SplashScreenState extends State<SplashScreen> {
     if (User != null) {
       UserInfo = User;
       Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => LoginPage()),
+          MaterialPageRoute(
+              builder: (context) => BottomNavBar(UserDetails: UserInfo)),
           (route) => false);
     } else {
       UserInfo = null;
       Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(
-              builder: (context) => BottomNavBar(UserDetails: UserInfo)),
+          MaterialPageRoute(builder: (context) => LoginPage()),
           (route) => false);
     }
   }

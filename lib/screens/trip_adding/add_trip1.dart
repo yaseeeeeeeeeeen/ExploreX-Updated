@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:trip_planner/database/db_helper.dart';
 import 'package:trip_planner/screens/trip_adding/add_trip2.dart';
 import 'package:trip_planner/screens/pages/botton_nav.dart';
-import 'package:trip_planner/widgets/continue_btn.dart';
+import 'package:trip_planner/widgets/buttons_and_textfields/continue_btn.dart';
 import 'package:trip_planner/widgets/textfield.dart';
 
 class AddTrip1 extends StatefulWidget {

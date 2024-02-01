@@ -103,6 +103,7 @@ class _ExpensePageState extends State<ExpensePage> {
 
   fuelCalculator() {
     showModalBottomSheet(
+      shape: LinearBorder(),
       context: context,
       builder: (context) {
         return FuelCalculator();

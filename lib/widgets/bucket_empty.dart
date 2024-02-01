@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trip_planner/constant/colors.dart';
 import 'package:trip_planner/widgets/bucket_add.dart';
 
 class EmptyBucket extends StatelessWidget {
@@ -11,7 +12,7 @@ class EmptyBucket extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(8),
+        padding: const EdgeInsets.all(15),
         child: Column(
           children: [
             Container(
@@ -25,7 +26,7 @@ class EmptyBucket extends StatelessWidget {
                 color: Colors.black,
               ),
               child: ListTile(
-                textColor: Colors.white,
+                textColor: white,
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) {
@@ -37,7 +38,7 @@ class EmptyBucket extends StatelessWidget {
                 },
                 title: Text(
                   'ADD YOUR DREAM DESTINATION',
-                  style: GoogleFonts.tenorSans(fontSize: 18),
+                  style: GoogleFonts.outfit(fontSize: 18),
                   textAlign: TextAlign.center,
                 ),
               ),

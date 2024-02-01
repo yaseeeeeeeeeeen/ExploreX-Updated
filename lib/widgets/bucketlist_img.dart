@@ -15,9 +15,9 @@ class DreamDestinationWid extends StatelessWidget {
       children: [
         Container(
           width: DeviceWidth,
-          height: 300,
+          height: MediaQuery.sizeOf(context).height / 4,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(10),
               image: DecorationImage(
                   colorFilter: ColorFilter.mode(
                       Colors.black.withOpacity(0.3), BlendMode.darken),
@@ -30,7 +30,7 @@ class DreamDestinationWid extends StatelessWidget {
           left: 20,
           child: Text(
               Destination[DatabaseHelper.destination].toString().toUpperCase(),
-              style: GoogleFonts.tenorSans(
+              style: GoogleFonts.outfit(
                   letterSpacing: 2, fontSize: 30, color: Colors.white)),
         )
       ],

@@ -19,7 +19,7 @@ class CustomTextFiledOne extends StatelessWidget {
     return TextFormField(
         controller: controller,
         validator: validation,
-        keyboardType: keyboardType ?? TextInputType.none,
+        keyboardType: keyboardType ?? TextInputType.name,
         decoration: InputDecoration(
             suffixIcon: Icon(suffixIcon),
             suffixIconColor: Colors.black87,

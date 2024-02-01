@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:trip_planner/constant/colors.dart';
 import 'package:trip_planner/constant/fonts_styles.dart';
 import 'package:trip_planner/constant/validations.dart';
