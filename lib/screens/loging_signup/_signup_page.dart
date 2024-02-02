@@ -43,6 +43,8 @@ class _SignUPageState extends State<SignUPage> {
       Container(
           height: media.height,
           decoration: BoxDecoration(
+              color: Colors.black,
+              backgroundBlendMode: BlendMode.darken,
               image: DecorationImage(
                   image: AssetImage(ImagePaths.signUpBg),
                   opacity: 0.7,

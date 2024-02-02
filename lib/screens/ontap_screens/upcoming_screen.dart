@@ -7,6 +7,7 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
+import 'package:trip_planner/constant/colors.dart';
 import 'package:trip_planner/database/db_helper.dart';
 
 import 'package:trip_planner/screens/pages/botton_nav.dart';
@@ -239,6 +240,8 @@ class _UpcomingScreenState extends State<UpcomingScreen> {
                 children: [
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
                       backgroundColor: Colors.black,
                       fixedSize:
                           Size(MediaQuery.sizeOf(context).width / 2 - 20, 50),
@@ -248,39 +251,48 @@ class _UpcomingScreenState extends State<UpcomingScreen> {
                     },
                     child: Text(
                       'SHOW COMPANIONS',
-                      style: GoogleFonts.dmSerifDisplay(
-                          fontSize: 17, fontWeight: FontWeight.w500),
+                      style: GoogleFonts.outfit(
+                          color: white,
+                          fontSize: 17,
+                          fontWeight: FontWeight.w500),
                     ),
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromRGBO(59, 115, 2, 1),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      backgroundColor: mainThemeClr,
                       fixedSize:
                           Size(MediaQuery.sizeOf(context).width / 2 - 20, 50),
                     ),
-                    onPressed: (){
-                   startClicked();
+                    onPressed: () {
+                      startClicked();
                     },
                     child: Text(
                       'START  TRIP',
-                      style: GoogleFonts.dmSerifDisplay(
-                          fontSize: 19, fontWeight: FontWeight.w500),
+                      style: GoogleFonts.outfit(
+                          color: white,
+                          fontSize: 19,
+                          fontWeight: FontWeight.w500),
                     ),
                   ),
                 ],
               ),
+              SizedBox(height: 20)
             ],
           ),
         ),
       ),
     );
   }
+
 //bottom sheet check list
   startClicked() {
     showModalBottomSheet(
+      shape: LinearBorder(),
       context: context,
       builder: (context) {
-        return CheckList(TripInfo: widget.TripInfo,userInfo: widget.userInfo);
+        return CheckList(TripInfo: widget.TripInfo, userInfo: widget.userInfo);
       },
     );
   }

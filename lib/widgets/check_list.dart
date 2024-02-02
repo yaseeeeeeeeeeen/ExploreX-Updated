@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:trip_planner/constant/colors.dart';
 import 'package:trip_planner/database/db_helper.dart';
 import 'package:trip_planner/screens/pages/botton_nav.dart';
 
@@ -16,9 +17,6 @@ List checkListItems = [
   'Personal Items',
   'Mobile Phone',
   'Medical supplies',
-  'Charger',
-  'Bag',
-  'Water bottle',
 ];
 
 class _CheckListState extends State<CheckList> {
@@ -27,13 +25,15 @@ class _CheckListState extends State<CheckList> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Column(
+      padding: EdgeInsets.all(10),
+      child: ListView(
+        shrinkWrap: true,
         children: [
           SizedBox(height: 10),
           Text(
             'REMAINDER',
-            style: GoogleFonts.tenorSans(
-                fontSize: 20, fontWeight: FontWeight.w500),
+            style:
+                GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.w500),
           ),
           SizedBox(height: 10),
           ListView.separated(
@@ -43,7 +43,7 @@ class _CheckListState extends State<CheckList> {
               return CheckboxListTile(
                 title: Text(
                   '${checkListItems[index]}',
-                  style: GoogleFonts.tenorSans(fontSize: 18),
+                  style: GoogleFonts.poppins(fontSize: 18),
                 ),
                 value: itemSelections[index],
                 onChanged: (bool? newValue) {
@@ -71,9 +71,11 @@ class _CheckListState extends State<CheckList> {
                 },
                 child: Text(
                   'Cancel',
-                  style: GoogleFonts.tenorSans(fontSize: 20),
+                  style: GoogleFonts.poppins(fontSize: 20, color: white),
                 ),
                 style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
                   backgroundColor: Colors.black,
                   fixedSize:
                       Size(MediaQuery.sizeOf(context).width / 2 - 20, 50),
@@ -85,10 +87,12 @@ class _CheckListState extends State<CheckList> {
                 },
                 child: Text(
                   'Start',
-                  style: GoogleFonts.tenorSans(fontSize: 20),
+                  style: GoogleFonts.poppins(fontSize: 20, color: white),
                 ),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromRGBO(59, 115, 2, 1),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  backgroundColor: mainThemeClr,
                   fixedSize:
                       Size(MediaQuery.sizeOf(context).width / 2 - 20, 50),
                 ),

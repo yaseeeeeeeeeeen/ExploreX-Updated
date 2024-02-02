@@ -15,6 +15,7 @@ class Myapp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+          bottomSheetTheme: BottomSheetThemeData(shape: LinearBorder()),
           scaffoldBackgroundColor: scaffoldbg,
           appBarTheme: AppBarTheme(
               iconTheme: IconThemeData(color: black),
