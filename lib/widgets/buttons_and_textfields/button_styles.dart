@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:trip_planner/constant/colors.dart';
 import 'package:trip_planner/constant/fonts_styles.dart';
 
+// ignore: must_be_immutable
 class CustomButtonOne extends StatelessWidget {
   CustomButtonOne({super.key, required this.onPressed, required this.text});
   void Function() onPressed;
