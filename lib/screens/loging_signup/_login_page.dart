@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:trip_planner/constant/colors.dart';
 import 'package:trip_planner/constant/fonts_styles.dart';
+import 'package:trip_planner/constant/functions.dart';
 import 'package:trip_planner/constant/validations.dart';
 
 import 'package:trip_planner/database/db_helper.dart';
@@ -112,6 +113,8 @@ class LoginPage extends StatelessWidget {
           customSnackBar(ctx, "USERNAME OR PASSWORD DOES' NOT MATCH", true));
     } else {
       logincheck = true;
+      await PermissionManager.requestContactsPermission();
+      await PermissionManager.requestGalleryPermission();
       Navigator.of(ctx).pushAndRemoveUntil(
           SizeTransitions(BottomNavBar(UserDetails: result)), (route) => false);
       // Navigator.of(ctx).pushReplacement(MaterialPageRoute(builder: (ctx) {

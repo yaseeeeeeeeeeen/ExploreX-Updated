@@ -48,11 +48,12 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
+  permission_handler: ^11.2.0
 icons:
   android: true
   ios: true
   image_path_android: "android/app/src/main/res"
-  image_path_ios: "ios" 
+  image_path_ios: "ios"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -99,9 +100,9 @@ flutter:
         - asset: assets/fonts/RobotoCondensed-Regular.ttf
     - family: dmSerifDisplay
       fonts:
-        - asset: assets/fonts/dmSerifDisplay-Regular.ttf      
+        - asset: assets/fonts/dmSerifDisplay-Regular.ttf
     - family: MarcellusSC
       fonts:
-        - asset: assets/fonts/MarcellusSC-Regular.ttf         
+        - asset: assets/fonts/MarcellusSC-Regular.ttf
     # For details regarding fonts from package dependencies,
     # see https://flutter.dev/custom-fonts/#from-packages

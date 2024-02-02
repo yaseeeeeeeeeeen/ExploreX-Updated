@@ -7,6 +7,7 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart';
 import 'package:trip_planner/constant/fonts_styles.dart';
+import 'package:trip_planner/constant/functions.dart';
 import 'package:trip_planner/constant/image_urls.dart';
 import 'package:trip_planner/constant/validations.dart';
 import 'package:trip_planner/database/db_helper.dart';
@@ -176,7 +177,8 @@ class _SignUPageState extends State<SignUPage> {
     imageCheck = false;
 //UserDetials Getting Firm DataBase
     var UserInfo = await DatabaseHelper.instance.getuserLoged();
-
+      await PermissionManager.requestContactsPermission();
+      await PermissionManager.requestGalleryPermission();
     Navigator.of(context).pushAndRemoveUntil(
         SizeTransitions(BottomNavBar(
           UserDetails: UserInfo,
